@@ -1,6 +1,6 @@
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { router } from 'expo-router';
-import { Dimensions, Image, Pressable, View } from 'react-native';
+import { Dimensions, FlatList, Image, Pressable, View } from 'react-native';
 
 const { width } = Dimensions.get('window');
 
@@ -11,10 +11,15 @@ type Props = {
 export default function ImageHeader({ images }: Props) {
     return (
         <View>
-            <Image
-                source={{ uri: images[0] }}
-                style={{ width, height: width }}
-                resizeMode="cover"
+            <FlatList data={images}
+                horizontal
+                pagingEnabled
+                showsHorizontalScrollIndicator={false}
+                renderItem={({ item }) => (<Image
+                    source={{ uri: item }}
+                    style={{ width, height: width }}
+                    resizeMode="cover"
+                />)}
             />
             <Pressable
                 onPress={() => router.back()}
