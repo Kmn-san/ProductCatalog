@@ -1,9 +1,9 @@
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { router } from 'expo-router';
 import { Image, Pressable, Text, View } from 'react-native';
+import { discountePrice } from '../lib/utlis';
 
 export default function ProductCard({ item }: any) {
-    const discountedPrice = item.price * (1 - item.discountPercentage / 100)
     return (
         <View className="flex-1 m-2">
             <Pressable
@@ -30,7 +30,7 @@ export default function ProductCard({ item }: any) {
                     {/* PRODUCT PRICE DISCOUNTED + RATE*/}
                     <View className="flex-row items-center justify-between mt-1">
                         <Text className="text-lg font-bold text-gray-900">
-                            RM{discountedPrice.toFixed(2)}
+                            RM {discountePrice({ price: item.price, discountPercentage: item.discountPercentage }).toFixed(2)}
                         </Text>
 
                         <View className="flex-row items-center">

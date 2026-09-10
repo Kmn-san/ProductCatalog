@@ -1,10 +1,10 @@
 import { useLocalSearchParams } from 'expo-router';
 import { Text, View } from 'react-native';
+import useProductDetail from '../../hooks/useProductDetail';
 
-export default function ProductDetial() {
+export default function ProductDetail() {
     const { id } = useLocalSearchParams();
-    console.log(id);
-
+    const { product, status } = useProductDetail(id);
     return (
         <View>
             <Text>ProductDetial</Text>
