@@ -5,6 +5,7 @@ import EmptyState from "../components/EmptyState";
 import ErrorState from "../components/ErrorState";
 import ListFooter from "../components/ListFooter";
 import ProductCard from "../components/ProductCard";
+import SearchBar from "../components/SearchBar";
 import SkeletonList from "../components/SkeletonList";
 import useProducts from "../hooks/useProducts";
 
@@ -19,13 +20,16 @@ export default function MainScreen() {
     ({ item }: any) => <ProductCard item={item} />, []
   )
 
-  if (isLoading) return <SkeletonList />
-  if (isError) return <ErrorState onRetry={refetch} />
-  if (products.length === 0) return <EmptyState />
-
   return (
     <SafeAreaView>
-      <FlatList
+      <SearchBar value={searchText} onChangeText={setSearchText} />
+      {isLoading ? (
+        <SkeletonList />
+      ) : isError ? (
+        <ErrorState onRetry={refetch} />
+      ) : products.length === 0 ? (
+        <EmptyState />
+      ) : (<FlatList
         data={products}
         keyExtractor={(item) => item.id.toString()}
         renderItem={renderItem}
@@ -42,7 +46,7 @@ export default function MainScreen() {
         ListFooterComponent={
           <ListFooter hasMore={hasNextPage} isLoadingMore={isFetchingNextPage} />
         }
-      />
+      />)}
     </SafeAreaView >
   );
 }
