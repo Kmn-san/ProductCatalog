@@ -7,12 +7,14 @@ import ListFooter from "../components/ListFooter";
 import ProductCard from "../components/ProductCard";
 import SearchBar from "../components/SearchBar";
 import SkeletonList from "../components/SkeletonList";
+import useDebounce from "../hooks/useDebounce";
 import useProducts from "../hooks/useProducts";
 
 export default function MainScreen() {
   const [searchText, setSearchText] = useState('');
+  const debouncedSearch = useDebounce(searchText, 400);
 
-  const { data, isLoading, isError, refetch, isRefetching, hasNextPage, isFetchingNextPage, fetchNextPage } = useProducts(searchText);
+  const { data, isLoading, isError, refetch, isRefetching, hasNextPage, isFetchingNextPage, fetchNextPage } = useProducts(debouncedSearch);
 
   const products = data?.pages.flatMap(page => page.products) ?? [];
 
@@ -41,7 +43,7 @@ export default function MainScreen() {
             fetchNextPage()
           }
         }}
-        onEndReachedThreshold={0.5}
+        onEndReachedThreshold={0.1}
         contentContainerStyle={{ paddingBottom: 20 }}
         ListFooterComponent={
           <ListFooter hasMore={hasNextPage} isLoadingMore={isFetchingNextPage} />

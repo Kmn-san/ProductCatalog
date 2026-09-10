@@ -13,6 +13,7 @@ export default function SearchBar({ value, onChangeText }: Props) {
 
             <TextInput
                 value={value}
+                onChangeText={onChangeText}
                 placeholder="Search products"
                 placeholderTextColor="#9CA3AF"
                 className="flex-1 ml-2 text-base text-gray-900"
