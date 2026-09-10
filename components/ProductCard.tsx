@@ -1,9 +1,10 @@
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { router } from 'expo-router';
+import React from 'react';
 import { Image, Pressable, Text, View } from 'react-native';
 import { discountePrice } from '../lib/utlis';
 
-export default function ProductCard({ item }: any) {
+function ProductCard({ item }: any) {
     return (
         <View className="flex-1 m-2">
             <Pressable
@@ -17,8 +18,9 @@ export default function ProductCard({ item }: any) {
                 <Image
                     source={{ uri: item.thumbnail }}
                     style={{ width: '100%', height: 120, borderRadius: 8 }}
+                    resizeMode="cover"
                 />
-                <View className="flex-1 ml-3 justify-between">
+                <View className="ml-3 mt-2">
                     {/* PRODUCT NAME */}
                     <Text
                         className="text-base font-semibold text-gray-900 mt-2"
@@ -45,3 +47,5 @@ export default function ProductCard({ item }: any) {
         </View >
     )
 }
+// memo record the ui for ui performance(by id of the item)
+export default React.memo(ProductCard);
