@@ -29,7 +29,6 @@ export default function MainScreen() {
         refreshing={isRefetching}
       />
     </SafeAreaView>
-
   );
 }
 
