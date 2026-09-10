@@ -1,6 +1,7 @@
 import { useLocalSearchParams } from 'expo-router';
 import { ScrollView, Text, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import DetailSkeleton from '../../components/detail/DetailSkeleton';
 import ImageHeader from '../../components/detail/ImageHeader';
 import PolicyInfo from '../../components/detail/PolicyInfo';
 import PriceSection from '../../components/detail/PriceSection';
@@ -12,8 +13,9 @@ import useProductDetail from '../../hooks/useProductDetail';
 
 export default function ProductDetail() {
     const { id } = useLocalSearchParams<{ id: string }>();
-    const { product, status } = useProductDetail(Number(id));
-    if (!product || status === "error") return <ErrorState />
+    const { product, status, retry } = useProductDetail(Number(id));
+    if (status === "loading") return <DetailSkeleton />
+    if (!product || status === "error") return <ErrorState onRetry={retry} />
     return (
         <SafeAreaView className="flex-1 bg-white" edges={['bottom']}>
             <ScrollView className="flex-1 bg-white">

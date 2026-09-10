@@ -15,7 +15,7 @@ export default function MainScreen() {
   const products = data?.pages.flatMap(page => page.products) ?? [];
 
   if (isLoading) return <SkeletonList />
-  if (isError) return <ErrorState />
+  if (isError) return <ErrorState onRetry={refetch} />
   if (products.length === 0) return <EmptyState />
 
   return (
