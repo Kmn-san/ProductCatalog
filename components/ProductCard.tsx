@@ -1,4 +1,5 @@
 import Ionicons from '@expo/vector-icons/Ionicons';
+import { router } from 'expo-router';
 import { Image, Pressable, Text, View } from 'react-native';
 
 export default function ProductCard({ item }: any) {
@@ -7,6 +8,10 @@ export default function ProductCard({ item }: any) {
         <View className="flex-1 m-2">
             <Pressable
                 className=" bg-white rounded-xl p-3 shadow-sm"
+                onPress={() => router.push({
+                    pathname: `/product/[id]`,
+                    params: { id: item.id }
+                })}
             >
                 {/* PRODUCT IMAGE */}
                 <Image
@@ -37,6 +42,6 @@ export default function ProductCard({ item }: any) {
                     </View>
                 </View>
             </Pressable>
-        </View>
+        </View >
     )
 }
