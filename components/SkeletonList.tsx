@@ -1,9 +1,14 @@
-import { Text, View } from 'react-native'
+import { FlatList } from 'react-native';
+import SkeletonState from './SkeletonState';
 
 export default function SkeletonList() {
+  // 8 items for a screen
+  const placeholders = Array.from({ length: 8 });
   return (
-    <View>
-      <Text>SkeletonList</Text>
-    </View>
+    <FlatList
+      data={placeholders}
+      numColumns={2}
+      renderItem={() => <SkeletonState />}
+    />
   )
 }
