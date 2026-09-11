@@ -14,7 +14,7 @@ export default function SkeletonState() {
 
     const animatedStyle = useAnimatedStyle(() => ({ opacity: opacity.value }))
     return (
-        // a procust card in skeleton
+        // a product card in skeleton
         <View className="flex-1 m-2">
             <View className="bg-white rounded-xl p-3 shadow-sm">
                 {/* PRODUCT IMAGE */}
