@@ -1,6 +1,6 @@
 # Product Catalog App
 
-A small product catalog app build with the free API(https:dummyjson.com), usng React Native + TypeScript.
+A small product catalog app build with the free API(https://dummyjson.com), usng React Native + TypeScript.
 
 ## Tech Stack
 
